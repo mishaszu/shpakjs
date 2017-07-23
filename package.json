@@ -1,0 +1,24 @@
+{
+  "name": "shpakjs",
+  "version": "0.0.1",
+  "description": "a build tool for modern javascript application",
+  "main": "shpak.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mishaszu/shpakjs.git"
+  },
+  "keywords": [
+    "build",
+    "tool",
+    "javascript"
+  ],
+  "author": "mishaszu@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mishaszu/shpakjs/issues"
+  },
+  "homepage": "https://github.com/mishaszu/shpakjs#readme"
+}
