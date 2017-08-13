@@ -1,4 +1,4 @@
-function CreateModule () {
+function ModulesFactory () {
   function test () {
     console.log("test")
   }
@@ -7,4 +7,4 @@ function CreateModule () {
   }
 }
 
-module.exports = CreateModule()
+module.exports = ModulesFactory()

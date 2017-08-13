@@ -1,5 +1,5 @@
 function MainModule () {
-  var ModuleHeader = `
+  const ModuleHeader = `
     (function (dep){
       var mapper = {};
       var shpak_modules = {};
@@ -31,57 +31,60 @@ function MainModule () {
           }
         }
       }
-    })(
-      [
-  `,
-      ModuleFooter = `
+    })([
+  `
+  const ModuleFooter = `
     ])
-  `,
-      Modules = `
-        {
-          name: "module1",
-          deps: ["module2", "module3"],
-          run: function(dep1, dep2) {
-            function add() {
-              return "this is depediencies " + dep1.add2() + " and " + dep2.add3()
-            }
-            return {
-              add: add
-            }
-          }
-        },
-        {
-          name: "module2",
-          deps: ["module3"],
-          run: function(dep1) {
-            function add() {
-              return "its module 2 with " + dep1.add3()
-            }
-            return {
-              add2: add
-            }
-          }
-        },
-        {
-          name: "module3",
-          deps: [],
-          run: function() {
-            function add() {
-              return "it's module 3"
-            }
-            return {
-              add3: add
-            }
-          }
+  `
+  const Modules = `
+    {
+      name: "module1",
+      deps: ["module2", "module3"],
+      run: function(dep1, dep2) {
+        function add() {
+          return "this is depediencies " + dep1.add2() + " and " + dep2.add3()
         }
-      `
+        return {
+          add: add
+        }
+      }
+    },
+    {
+      name: "module2",
+      deps: ["module3"],
+      run: function(dep1) {
+        function add() {
+          return "its module 2 with " + dep1.add3()
+        }
+        return {
+          add2: add
+        }
+      }
+    },
+    {
+      name: "module3",
+      deps: [],
+      run: function() {
+        function add() {
+          return "it's module 3"
+        }
+        return {
+          add3: add
+        }
+      }
+    }
+  `
 
   function test() {
     eval(ModuleHeader + Modules + ModuleFooter)
   }
+  function createMainModule ( pModules ) {
+    return ModuleHeader + pModules + ModuleFooter
+  }
 
   return {
-    test: test
+    test: test,
+    bundle: createMainModule
   }
 }
 
