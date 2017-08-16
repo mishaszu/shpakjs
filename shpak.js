@@ -2,8 +2,8 @@ const root = __dirname
 const MainModule = require('./bundling/main-module.js')
 const ModuleFactory = require('./bundling/module-factory.js')
 
-
 MainModule.test()
+console.log("-----------------")
 
 function Shpak () {
   let ENRTYPOINT
@@ -20,6 +20,7 @@ function Shpak () {
 
   function parseEntryPoint (pStringFile) {
     const modules = ModuleFactory.parse(pStringFile, root)
+    console.log("-----------------")
     console.log(modules)
   }
 
