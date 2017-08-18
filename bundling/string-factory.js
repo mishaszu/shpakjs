@@ -45,7 +45,6 @@ function StringFactory () {
         depDescription.push(dep.replace(toReplace[0], '$hpak__dep' + (x + 1)))
         params.push('$hpak__dep' + (x + 1))
 
-        file = file.replace(/\nmodule.exports.*\n/m, '')
         file = file.replace(DepPattern, '')
         deps.push({
           name: name,
@@ -65,7 +64,8 @@ function StringFactory () {
     }
 
     file = file.replace(/\n\n/g, '\n')
-    file = file.replace(/\n\n/g, '\n')
+    file = file.replace(/\n\n/g, '\n  ')
+    file = file.replace(/\nmodule.exports.*\n/m, '')
 
     return {
       name: obj.name,  

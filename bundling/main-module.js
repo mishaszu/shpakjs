@@ -10,9 +10,9 @@ function MainModule () {
       Object.keys(mapper).forEach((key) =>{
         if ( !shpak_modules[mapper[key].name]) {
           registerDep(mapper[key])
-          console.log(shpak_modules.module1.add())
         }
       })
+      console.log(shpak_modules.MainModule.run())
     
       function registerDep (dep) {
         if (dep.deps.length) {
@@ -78,12 +78,16 @@ function MainModule () {
   function test() {
     eval(ModuleHeader + Modules + ModuleFooter)
   }
+  function test2(module) {
+    eval(ModuleHeader + module + ModuleFooter)
+  }
   function createMainModule ( pModules ) {
     return ModuleHeader + pModules + ModuleFooter
   }
 
   return {
     test: test,
+    test2: test2,
     bundle: createMainModule
   }
 }

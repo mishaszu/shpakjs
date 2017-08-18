@@ -1,9 +1,7 @@
 const root = __dirname
 const MainModule = require('./bundling/main-module.js')
 const ModuleFactory = require('./bundling/module-factory.js')
-
-MainModule.test()
-console.log("-----------------")
+const SaveFile = require ('./bundling/save-file.js')
 
 function Shpak () {
   let ENRTYPOINT
@@ -19,8 +17,8 @@ function Shpak () {
   }
 
   function parseEntryPoint (pStringFile) {
-    const modules = ModuleFactory.parse(pStringFile, root)
-    console.log("-----------------")
+    const modules = ModuleFactory.forge(pStringFile, root)
+    MainModule.test2(modules)
     console.log(modules)
   }
 
