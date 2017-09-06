@@ -2,13 +2,16 @@ var fs = require('fs');
 
 function SaveFile () {
 
-  function saveFile(root, file) {
-    console.log(file)
-    fs.writeFile("test_write_file_1.js", file, function(err){
+  function saveFile(root, dest, fileName, data) {
+    const dir = root + '/' + dest
+
+    if (!fs.existsSync(dir)){
+          fs.mkdirSync(dir);
+    }   
+    fs.writeFile(dir + fileName, data, function(err){
        if (err) throw err;
-        console.log("success");
+        console.log('File: ' + fileName + ' saved!');
     }); 
-    return file
   }
 
   return {
