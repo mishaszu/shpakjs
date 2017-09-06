@@ -4,7 +4,7 @@
   "description": "a build tool for modern javascript application",
   "main": "shpak.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./shpak.js"
   },
   "repository": {
     "type": "git",

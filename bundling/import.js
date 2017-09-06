@@ -1,9 +1,6 @@
 const fs = require('fs')
-function ImoportFile () {
 
-  function test() {
-    console.log(__dirname);
-  }
+function ImoportFile () {
 
   function readFileSync(ROOT, URL) {
     const file = fs.readFileSync(ROOT + "/" + URL, 'utf8')
@@ -12,7 +9,6 @@ function ImoportFile () {
 
   return {
     read: readFileSync,
-    test: test
   }
 }
 
