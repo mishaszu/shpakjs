@@ -75,20 +75,12 @@ function MainModule () {
     }
   `
 
-  function test() {
-    eval(ModuleHeader + Modules + ModuleFooter)
-  }
-  function test2(module) {
-    eval(ModuleHeader + module + ModuleFooter)
-  }
   function createMainModule ( pModules ) {
     return ModuleHeader + pModules + ModuleFooter
   }
 
   return {
-    test: test,
-    test2: test2,
-    bundle: createMainModule
+    create: createMainModule
   }
 }
 

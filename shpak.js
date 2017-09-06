@@ -18,8 +18,8 @@ function Shpak () {
 
   function parseEntryPoint (pStringFile) {
     const modules = ModuleFactory.forge(pStringFile, root)
-    MainModule.test2(modules)
-    console.log(modules)
+    //TODO only for tests
+    eval(MainModule.create(modules))
   }
 
   return {

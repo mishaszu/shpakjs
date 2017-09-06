@@ -1,5 +1,4 @@
 const StringFactory = require('./string-factory.js')
-const CreateModule = require('./create-module.js')
 const Import = require ('./import.js')
 
 function ModuleFactory () {
