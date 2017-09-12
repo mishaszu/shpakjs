@@ -1,13 +1,11 @@
 const root = __dirname
-const MainModule = require('./bundling/main-module.js')
-const ModuleFactory = require('./bundling/module-factory.js')
-const SaveFile = require ('./bundling/save-file.js')
+const {SaveFile, ModuleFactory} = require('./src/index')
 
 function Shpak () {
   let ENRTYPOINT
 
   function loadEntryPoint () {
-    const entryFile = root + "/shpakjs.config.js"
+    const entryFile = root + '/shpakjs.config.js'
     try {
       ENTRYPOINT = require(entryFile)
     } catch (err) {
@@ -16,21 +14,29 @@ function Shpak () {
     return  ENTRYPOINT.entry
   }
 
-  function parseEntryPoint (pStringFile) {
-    const modules = ModuleFactory.forge(pStringFile, root)
-    MainModule.test2(modules)
-    console.log(modules)
+  function saveBundle ({rootPath, sourceFile}) {
+    const modules = ModuleFactory.forge({
+      rootPath: rootPath,
+      sourceFile: sourceFile
+    })
+    return modules;
   }
 
   return {
-    loadEntryPoint: loadEntryPoint,
-    parseEntryPoint: parseEntryPoint
+    start: loadEntryPoint,
+    save: saveBundle
   }
 }
 
+
+//**TEST FIELD**//
 var $ = Shpak()
 
-var filePath = $.loadEntryPoint()
-var modules = $.parseEntryPoint(filePath, root)
+var filePath = $.start(root)
+var modules = $.save({sourceFile: filePath, rootPath: root})
+
+console.log(modules, '| shpak.js');
+
+// var modules = $.parseEntryPoint(filePath, root)
 
 //module.exports = Shpak()

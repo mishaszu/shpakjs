@@ -1,12 +1,15 @@
 function StringFactory () {
 
+  function parseDependiencies (pFile) {
+    
+  }
   function parse_file (file) {
     //const pipe = map(find_name, find_dep, find_file)
     const pipe = map(find_name, find_dep)
     return pipe(file)
   }
   
-  function find_name (file) {
+  function find_nameOLD (file) {
     const NamePattern = /module.exports = (.*)\(\)/
     let name = file.match(NamePattern)[1]
     return {
@@ -15,7 +18,7 @@ function StringFactory () {
     }
   }
   //TODO separate on smaller files
-  function find_dep (obj) {
+  function find_depOLD (obj) {
     //TODO include require
     //TODO include other formating (like other spaces etc)
     const DepPattern = /const (.*) = require\((.*)\)/g
@@ -83,7 +86,8 @@ function StringFactory () {
     }
   }
   return {
-    parse_file: parse_file
+    parse_file: parse_file,
+    parseDependiencies: parseDependiencies
   }
 }
 
