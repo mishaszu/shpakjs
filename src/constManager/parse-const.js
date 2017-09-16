@@ -1,4 +1,4 @@
-const {Import} = require('../fileManager/index')
+const {Import} = require('../fileManager')
 
 function ParseConst () {
     function parseShpakModule({rootPath, sourceFile}) {

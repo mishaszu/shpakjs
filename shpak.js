@@ -1,5 +1,6 @@
 const root = __dirname
-const {SaveFile, ModuleFactory} = require('./src/index')
+const {SaveFile} = require('./src/fileManager')
+const {ModuleFactory} = require('./src/moduleManager')
 
 function Shpak () {
   let ENRTYPOINT

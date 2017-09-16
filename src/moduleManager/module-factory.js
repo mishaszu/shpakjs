@@ -1,5 +1,5 @@
-const {StringFactory} = require('../stringManager/index')
-const {ParseConst} = require('../constManager/index')
+const {StringFactory} = require('../stringManager')
+const {ParseConst} = require('../constManager')
 const SubModule = require('./sub-module')
 
 const map = require('b-pipe')
