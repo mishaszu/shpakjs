@@ -1,2 +1,2 @@
-exports.Import = require('./import')
-exports.SaveFile = require('./save-file')
+exports.Read = require('./read')
+exports.Save = require('./save-file')

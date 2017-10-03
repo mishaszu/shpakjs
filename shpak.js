@@ -1,43 +1,42 @@
-const root = __dirname
-const {SaveFile} = require('./src/fileManager')
+const pipe = require('b-pipe')
 const {ModuleFactory} = require('./src/moduleManager')
 
+const {S} = require('./src/constManager')
+S.init(__dirname)
+
 function Shpak () {
-  let ENRTYPOINT
-
-  function loadEntryPoint () {
-    const entryFile = root + '/shpakjs.config.js'
+  function process () {
+    const _ = Object.assign(S)
+    const s_pipe = pipe(loadEntryPoint, parseModules, saveModule)
+    s_pipe(_)
+  }
+  function loadEntryPoint (s) {
+    const _ = Object.assign(s)
     try {
-      ENTRYPOINT = require(entryFile)
+      _.entry = require(s.join(s.root,s.config)).entry
     } catch (err) {
-      throw(err)
+      //TODO add error object assignation
     }
-    return  ENTRYPOINT.entry
+    return _
   }
-
-  function saveBundle ({rootPath, sourceFile}) {
-    const modules = ModuleFactory.forge({
-      rootPath: rootPath,
-      sourceFile: sourceFile
-    })
-    return modules;
+  function parseModules (s) {
+    const _ = Object.assign(s)
+    ModuleFactory.hatching(_)
+    return _
   }
-
+  function saveModule (s) {
+    const _ = Object.assign(s)
+    return _
+  }
   return {
-    start: loadEntryPoint,
-    save: saveBundle
+    doIt: process
   }
 }
 
 
 //**TEST FIELD**//
 var $ = Shpak()
-
-var filePath = $.start(root)
-var modules = $.save({sourceFile: filePath, rootPath: root})
-
-console.log(modules, '| shpak.js');
-
+$.doIt()
 // var modules = $.parseEntryPoint(filePath, root)
 
 //module.exports = Shpak()

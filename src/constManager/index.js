@@ -1,1 +1,1 @@
-exports.ParseConst = require('./parse-const')
+exports.S = require('./s')
