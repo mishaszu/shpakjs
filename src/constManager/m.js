@@ -1,5 +1,5 @@
 const M = {
-  deps: '',
+  deps: [],
   file: '',
   name: '',
   path: ''

@@ -3,7 +3,6 @@ const pipe = require('b-pipe')
 const {StringFactory} = require('../stringManager')
 const {ParseConst} = require('../constManager')
 
-const Nest = require('./prepareNest')
 const Sort = require('./sortEggs')
 const Heat = require('./heatEggs')
 const Hatch = require('./hatchEggs')
@@ -11,9 +10,8 @@ const Hatch = require('./hatchEggs')
 /**
  * 1.
  * -parse name
- * -parse all dependencies
- * -parse all modules
- * -parse file
+ * -parse dep path
+ * -iterate throught all modules
  *
  * 2.
  * -replace all requires
@@ -24,11 +22,9 @@ const Hatch = require('./hatchEggs')
  * -testing
  */
 
-const map = require('b-pipe')
-
 function ModuleFactory () {
   function hatching(s){
-    const hatching_pipe = pipe(Nest.tweet, Sort.tweet, Heat.tweet, Hatch.tweet)
+    const hatching_pipe = pipe(Sort.tweet, Heat.tweet, Hatch.tweet)
     return hatching_pipe(s)
   }
 

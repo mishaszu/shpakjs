@@ -12,6 +12,9 @@ const e = {
   },
   green(subject) {
     console.log('\x1b[32m', subject, '\x1b[0m')
+  },
+  red(subject) {
+    console.log('\x1b[31m', subject, '\x1b[0m')
   }
 }
 

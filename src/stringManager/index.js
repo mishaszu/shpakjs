@@ -1,1 +1,2 @@
-exports.StringFactory = require('./string-factory')
+//TODO change to pecker
+exports.Peck = require('./pecker-2')

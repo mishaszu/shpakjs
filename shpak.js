@@ -11,21 +11,21 @@ function Shpak () {
     s_pipe(_)
   }
   function loadEntryPoint (s) {
-    const _ = Object.assign(s)
+    const _ = Object.create(s,{});
     try {
-      _.entry = require(s.join(s.root,s.config)).entry
+      _.entry = require(_.join(_.root,_.config)).entry
     } catch (err) {
       //TODO add error object assignation
     }
     return _
   }
   function parseModules (s) {
-    const _ = Object.assign(s)
+    const _ = Object.create(s, {})
     ModuleFactory.hatching(_)
     return _
   }
   function saveModule (s) {
-    const _ = Object.assign(s)
+    const _ = Object.create(s, {})
     return _
   }
   return {
