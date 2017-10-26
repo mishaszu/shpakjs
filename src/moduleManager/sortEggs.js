@@ -1,34 +1,34 @@
 const {Read} = require('../fileManager')
 const {Peck} = require('../stringManager')
+const {E, S} = require('../constManager')
 
 function SortEggs() {
   function tweet(s){
-    s.e.peep('Start sorting', 'green')
+    s.e.peep('Start sorting', 'green', 'Sorting eggs proc')
     const _ = Object.create(s, {})
     init(_) 
-    _.e.peep(_, 'red')
     return _
   }
 
   function init(s){
     const _ = Object.assign(s)
-    //parseAllModules(_, _.join(_.root,_.entry))
-    _.e.peep(_.eggs, 'red')
-    return _
+    const files = parseAllModules(_.join(_.root,_.entry), [])
+    return files
   }
 
-  function parseAllModules(_, path){
-    const egg = _.layEgg()
-    let deps
-    egg.path = path
-    egg.file = Read.file(path)
-    egg.name = Peck.name(egg.file)
-    deps = Peck.deps(egg.file)
-    deps.forEach((dep) => {
-      egg.deps.push(dep[0])
-      //parseAllModules(_, dep[1])
-    })
-    _.registerEgg(egg)
+  function parseAllModules(path, array){
+    const file = Read.file(path)
+    const source = []
+    const deps = Peck.deps(file, path)
+    
+    if (deps) {
+      deps.forEach((dep) => {
+        array.concat(parseAllModules(dep, array))
+      })
+    }
+    
+    array.push(file)
+    return array
   }
   
   return {

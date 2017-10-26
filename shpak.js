@@ -8,7 +8,7 @@ function Shpak () {
   function process () {
     const _ = Object.assign(S)
     const s_pipe = pipe(loadEntryPoint, parseModules, saveModule)
-    s_pipe(_)
+    return s_pipe(_)
   }
   function loadEntryPoint (s) {
     const _ = Object.create(s,{});
