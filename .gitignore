@@ -1,4 +1,4 @@
 node_modules
 *.swp
-.DS_Store
-test_write_file_1.js
+*.orig
+dist
