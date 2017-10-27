@@ -4,11 +4,11 @@ const {Read} = require('../fileManager')
 function shpakFix () {
   function idea(path) {
     const shpakModule_pipe = pipe(parseShpakModule, remap)
-    return shpakModule_pipe(path)
+    return shpakModule_pipe()
   }
 
-  function parseShpakModule(path) {
-    return Read.file(path + "shpak-module.js")
+  function parseShpakModule() {
+    return Read.file(__dirname + "/shpak-module.js")
   }
   function remap(string) {
     const file = string.split('//**BREAKER**//')

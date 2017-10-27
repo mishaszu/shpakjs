@@ -1,8 +1,8 @@
+const {P} = require('../constManager')
+
 function Hatch (){
   function tweet(s) {
-    s.e.peep('Modules parsing', 'green')
-    const _ = Object.assign(s)
-    return _
+    return 'test'
   }
 
   return {

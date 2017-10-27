@@ -1,18 +1,15 @@
 const {Read} = require('../fileManager')
 const {Peck} = require('../stringManager')
-const {E, S} = require('../constManager')
+const {P, S} = require('../constManager')
 
 function SortEggs() {
-  function tweet(s){
-    s.e.peep('Start sorting', 'green', 'Sorting eggs proc')
-    const _ = Object.create(s, {})
-    init(_) 
-    return _
+  function tweet(path){
+    P('Start sorting').green()
+    return init(path) 
   }
 
-  function init(s){
-    const _ = Object.assign(s)
-    const files = parseAllModules(_.join(_.root,_.entry), [])
+  function init(path){
+    const files = parseAllModules(path, [])
     return files
   }
 

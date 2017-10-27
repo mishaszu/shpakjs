@@ -2,41 +2,29 @@ const pipe = require('b-pipe')
 const {ModuleFactory} = require('./src/moduleManager')
 
 const {S} = require('./src/constManager')
-S.init(__dirname)
 
 function Shpak () {
   function process () {
-    const _ = Object.assign(S)
     const s_pipe = pipe(loadEntryPoint, parseModules, saveModule)
-    return s_pipe(_)
+    return s_pipe()
   }
-  function loadEntryPoint (s) {
-    const _ = Object.create(s,{});
+  function loadEntryPoint () {
     try {
-      _.entry = require(_.join(_.root,_.config)).entry
+      return S.join(__dirname, require(S.join(__dirname,S.entry())).entry)
     } catch (err) {
       //TODO add error object assignation
     }
-    return _
   }
-  function parseModules (s) {
-    const _ = Object.create(s, {})
-    ModuleFactory.hatching(_)
-    return _
+  function parseModules (path) {
+    ModuleFactory.hatching(path)
   }
-  function saveModule (s) {
-    const _ = Object.create(s, {})
-    return _
+  function saveModule () {
+
   }
   return {
     doIt: process
   }
 }
 
-
-//**TEST FIELD**//
 var $ = Shpak()
 $.doIt()
-// var modules = $.parseEntryPoint(filePath, root)
-
-//module.exports = Shpak()

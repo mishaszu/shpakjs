@@ -1,38 +1,30 @@
-const E = require('./e')
 const M = require('./m')
 
 const ShpakFix = require('./shpak-fix')
 
-const S = {
-  config: 'shpakjs.config.js',
-  e: E,
-  eggs: {},
-  entry: '',
-  root: '',
-  nest: ''
-}
-
-S.join = function(){
-  const args = arguments
-  const arr = []
-  for(let x = 0; x < args.length; x++){
-    arr.push(args[x])
+class S {
+  constructor(root, entry) {
+    this.eggs = {}
+    this.nest = ShpakFix.idea()
   }
-  return arr.join('/')
-}
 
-S.init = function(root){
-  this.root = root
-  nest = ShpakFix.idea(__dirname + '/')
-}
+  static join() {
+    const args = arguments
+    const arr = []
+    for(let x = 0; x < args.length; x++){
+      arr.push(args[x])
+    }
+    return arr.join('/')
+  }
 
-S.layEgg = function() {
-  return Object.create(M, {})
-}
+  static entry() {
+    return 'shpakjs.config.js'
+  }
 
-S.registerEgg = function(egg) {
-  this.eggs[egg.name] = egg
+  static layEgg() {
+    const egg = new M()
+    return egg
+  }
 }
-
 
 module.exports = S

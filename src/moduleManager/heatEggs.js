@@ -1,8 +1,11 @@
+const {P} = require('../constManager')
+
 function Heat(){
-  function tweet(s) {
-    s.e.peep('Modules reformating', 'green')
-    const _ = Object.assign(s)
-    return _
+  function tweet(array) {
+    array.forEach((ele) => {
+      P(ele).red('all files')
+    })
+    return 'test'
   }
   return {
     tweet: tweet
