@@ -3,9 +3,8 @@ const M = require('./m')
 const ShpakFix = require('./shpak-fix')
 
 class S {
-  constructor(root, entry) {
+  constructor() {
     this.eggs = {}
-    this.nest = ShpakFix.idea()
   }
 
   static join() {
@@ -23,6 +22,10 @@ class S {
 
   static layEgg() {
     return new M()
+  }
+
+  static nest() {
+    return ShpakFix.idea()
   }
 }
 
