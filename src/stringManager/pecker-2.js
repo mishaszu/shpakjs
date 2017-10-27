@@ -1,9 +1,18 @@
-const {DepsPattern} = require('./patterns')
-const {E, S} = require('../constManager')
+const {DepsPattern, NamePattern} = require('./patterns')
+const {P, S} = require('../constManager')
 
 function Peck() {
   function name (file) {
-    return 'MainModule'
+    const name1 = NamePattern.functionName(file)[1]
+    let name2 = NamePattern.exportName(file)[1]
+    name2 = name2.slice(0, name2.length - 2)
+    
+    if (name1 !== name2) {
+      P('Names are not equal!').red()
+      P(name1).red('name from function')
+      P(name2).red('name from module')
+    }
+    return name1
   }
 
   function deps (file, path) {
@@ -13,7 +22,7 @@ function Peck() {
     let dir = path.split('/')
     dir.pop()
     dir = dir.join('/')
-
+    
     if (search) {
       search.forEach((module) => {
         depsStrings.push(DepsPattern.req(module)[1])
