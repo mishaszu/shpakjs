@@ -22,8 +22,7 @@ class S {
   }
 
   static layEgg() {
-    const egg = new M()
-    return egg
+    return new M()
   }
 }
 

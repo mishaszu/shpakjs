@@ -2,7 +2,7 @@ const pipe = require('b-pipe')
 const {Read} = require('../fileManager')
 
 function shpakFix () {
-  function idea(path) {
+  function idea() {
     const shpakModule_pipe = pipe(parseShpakModule, remap)
     return shpakModule_pipe()
   }
