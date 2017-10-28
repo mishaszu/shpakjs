@@ -4,8 +4,7 @@ const {Peck} = require('../stringManager')
 function Count (){
   function init(array) {
     P('Start counting eggs').green()
-    const Nested = findDeps(array)
-    return 'test'
+    return findDeps(array)
   }
 
   function findDeps(array) {
