@@ -7,6 +7,14 @@ class S {
     this.eggs = {}
   }
 
+  getEgg(name) {
+    return this.eggs[name]
+  }
+
+  setEgg(name, egg) {
+    this.eggs[name] = egg
+  }
+
   static join() {
     const args = arguments
     const arr = []

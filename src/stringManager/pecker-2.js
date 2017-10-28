@@ -3,9 +3,9 @@ const {P, S} = require('../constManager')
 
 function Peck() {
   function name (file) {
-    const name1 = NamePattern.functionName(file)[1]
+    const name1 = NamePattern.functionName(file)[1].toLowerCase()
     let name2 = NamePattern.exportName(file)[1]
-    name2 = name2.slice(0, name2.length - 2)
+    name2 = name2.slice(0, name2.length - 2).toLowerCase()
     
     if (name1 !== name2) {
       P('Names are not equal!').red()
@@ -15,7 +15,7 @@ function Peck() {
     return name1
   }
 
-  function deps (file, path) {
+  function depFiles (file, path) {
     const search = DepsPattern.formule(file)
     const depsStrings = []
     const deps = []
@@ -39,8 +39,16 @@ function Peck() {
     return false
   }
 
-  function path () {
-
+  function depNames(file) {
+    const search = DepsPattern.formule(file)
+    const deps = []
+    if (search) {
+      search.forEach((dep) => {
+        deps.push(DepsPattern.name(dep).toLowerCase())
+      })
+      return deps
+    }
+    return false
   }
 
   function input () {
@@ -53,8 +61,8 @@ function Peck() {
 
   return {
     name: name,
-    path: path,
-    deps: deps,
+    depFiles: depFiles,
+    depNames: depNames,
     input: input,
     output: output
   }

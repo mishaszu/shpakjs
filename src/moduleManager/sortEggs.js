@@ -16,7 +16,7 @@ function SortEggs() {
   function parseAllModules(path, array){
     const file = Read.file(path)
     const source = []
-    const deps = Peck.deps(file, path)
+    const deps = Peck.depFiles(file, path)
     
     if (deps) {
       deps.forEach((dep) => {
