@@ -7,10 +7,11 @@ const Sort = require('./sortEggs')
 const Heat = require('./heatEggs')
 const Hatch = require('./hatchEggs')
 const Count = require('./countEggs')
+const Export = require('./exportEggs')
 
 function ModuleFactory () {
   function hatching(path){
-    const hatching_pipe = pipe(Sort.tweet, Heat.tweet, Count.tweet, Hatch.tweet)
+    const hatching_pipe = pipe(Sort.tweet, Heat.tweet, Count.tweet, Export.tweet, Hatch.tweet)
     return hatching_pipe(path)
   }
 

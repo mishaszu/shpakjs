@@ -12,8 +12,9 @@ function Heat(){
     const eggs = []
     array.forEach((file) => {
       let egg = S.layEgg()
-      egg.file = file
-      egg.name = Peck.name(file)
+      let peckName = Peck.name(file)
+      egg.file = peckName[1]
+      egg.name = peckName[0]
       eggs.push(egg)
     })
     return eggs

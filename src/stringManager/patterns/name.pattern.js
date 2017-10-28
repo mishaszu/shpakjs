@@ -9,10 +9,17 @@ function Name () {
     return file.match(pattern)
   }
 
+  function replaceName(file, name) {
+    const pattern = /function (.*) \(\) \{/
+    const newString = `function ${name} () {`
+    return file.replace(pattern, newString)
+  }
+
 
   return {
     exportName: exportName,
-    functionName: functionName
+    functionName: functionName,
+    replaceName: replaceName
   }
 }
 
