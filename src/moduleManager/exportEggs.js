@@ -11,7 +11,6 @@ function Export (){
   function replaceExport(object) {
     for (egg in object.eggs) {
       let file = object.eggs[egg].file
-      P(object.eggs[egg].name, 'iterateEggs').yellow()
       let newFile = Peck.replaceExport(file, object.eggs[egg].name)
       object.eggs[egg].file = newFile
     }
