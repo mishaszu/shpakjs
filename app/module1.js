@@ -1,4 +1,4 @@
-const Module1sub = require('./sub_module1.js')
+const SubModule1 = require('./sub_module1.js')
 
 function Module1 () {
   function run2 () {

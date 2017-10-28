@@ -9,10 +9,16 @@ function Dep () {
     const Pattern = /require\((.*)\)/
     return string.match(Pattern);
   }
+
+  function name(string) {
+    const Pattern = /const (.*) =/
+    return string.match(Pattern)[1]
+  }
   
   return {
     formule: formule,
-    req: req
+    req: req,
+    name: name
   }
 }
 
