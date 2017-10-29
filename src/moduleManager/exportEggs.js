@@ -11,8 +11,7 @@ function Export (){
   function replaceExport(object) {
     for (egg in object.eggs) {
       let file = object.eggs[egg].file
-      let newFile = Peck.replaceExport(file, object.eggs[egg].name)
-      object.eggs[egg].file = newFile
+      object.eggs[egg].file = Peck.replaceExport(file, object.eggs[egg].name)
     }
     return object
   }

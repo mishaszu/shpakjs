@@ -12,7 +12,6 @@ function Peck() {
       P(name2).red('name from module')
     }
     file = NamePattern.replaceName(file, name1)
-    P(file).red('new files')
     return [name1, file]
   }
 
