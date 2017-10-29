@@ -1,4 +1,4 @@
-const {DepsPattern, NamePattern, ExportPattern} = require('./patterns')
+const {DepsPattern, NamePattern, ExportPattern, ImportPattern} = require('./patterns')
 const {P, S} = require('../constManager')
 
 function Peck() {
@@ -12,7 +12,6 @@ function Peck() {
       P(name2).red('name from module')
     }
     file = NamePattern.replaceName(file, name1)
-    P(file).red('new files')
     return [name1, file]
   }
 
@@ -56,6 +55,19 @@ function Peck() {
     return ExportPattern.replace(file, name)
   }
 
+  function replaceImport(file, deps) {
+    let newFile = file
+    deps.forEach((dep) => {
+      let nameCheck = ImportPattern.check(newFile)[1];
+      if (nameCheck.toUpperCase() === dep) {
+        newFile = ImportPattern.replace(newFile, nameCheck)
+      } else {
+        P(dep).red("Can't set require.")
+      }
+    })
+    return newFile
+  }
+
   function input () {
 
   }
@@ -70,7 +82,8 @@ function Peck() {
     depNames: depNames,
     input: input,
     output: output,
-    replaceExport: replaceExport
+    replaceExport: replaceExport,
+    replaceImport: replaceImport
   }
 }
 
