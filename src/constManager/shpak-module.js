@@ -10,7 +10,7 @@
       registerDep(mapper[key])
     }
   })
-  console.log(shpak_modules.MainModule.run())
+  console.log(shpak_modules.MAINMODULE.run())
 
   function registerDep (dep) {
     if (dep.deps.length) {

@@ -26,7 +26,7 @@ function Count (){
         })
       }
     })
-    return Nest
+    return Nest.eggs
   }
 
   return {

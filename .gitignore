@@ -1,4 +1,5 @@
 node_modules
 *.swp
 *.orig
+test__write_file_1.js
 dist

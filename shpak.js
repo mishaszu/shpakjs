@@ -1,7 +1,8 @@
 const pipe = require('b-pipe')
 const {ModuleFactory} = require('./src/moduleManager')
+const {Save} = require('./src/fileManager')
 
-const {S} = require('./src/constManager')
+const {S, P} = require('./src/constManager')
 
 function Shpak () {
   function process () {
@@ -16,7 +17,12 @@ function Shpak () {
     }
   }
   function parseModules (path) {
-    ModuleFactory.hatching(path)
+    const file = ModuleFactory.hatching(path)
+    try {
+      Save.file(__dirname, file)
+    } catch (err) {
+      P("Can't save file")
+    }
   }
   function saveModule () {
 
