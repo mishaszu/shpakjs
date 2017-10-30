@@ -1,2 +1,1 @@
-//TODO change to pecker
-exports.Peck = require('./pecker-2')
+exports.Peck = require('./pecker')

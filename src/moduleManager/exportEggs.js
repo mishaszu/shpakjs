@@ -1,6 +1,7 @@
-const {P} = require('../constManager')
+const {P, S} = require('../constManager')
 
 const {Peck} = require('../stringManager')
+const {Save} = require('../fileManager')
 
 function Export (){
   function init(object) {
@@ -9,9 +10,9 @@ function Export (){
   }
 
   function replaceExport(object) {
-    for (egg in object.eggs) {
-      let file = object.eggs[egg].file
-      object.eggs[egg].file = Peck.replaceExport(file, object.eggs[egg].name)
+    for (egg in object) {
+      let file = object[egg].file
+      object[egg].file = Peck.replaceExport(file, object[egg].name)
     }
     return object
   }

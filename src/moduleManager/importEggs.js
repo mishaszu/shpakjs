@@ -8,9 +8,9 @@ function Import (){
   }
 
   function replaceImport(object) {
-    for (egg in object.eggs) {
-      let file = object.eggs[egg].file
-      object.eggs[egg].file = Peck.replaceImport(file, object.eggs[egg].deps)
+    for (egg in object) {
+      let file = object[egg].file
+      object[egg].file = Peck.replaceImport(file, object[egg].deps)
     } 
     return object
   }

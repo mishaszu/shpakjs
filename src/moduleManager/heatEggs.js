@@ -4,8 +4,7 @@ const {Peck} = require('../stringManager')
 function Heat(){
   function init(array) {
     P('Start heating eggs').green()
-    const eggs = findAllNames(array)
-    return eggs
+    return findAllNames(array)
   }
 
   function findAllNames(array) {
