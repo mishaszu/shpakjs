@@ -8,6 +8,7 @@ const {S, P} = require('./src/constManager')
 function Shpak () {
   const conf = {
     entry: '',
+    destDir: '',
     destFile: ''
   }
   function process () {
@@ -30,43 +31,23 @@ function Shpak () {
       throw 'There is no entry file in config'
     }
 
-    destDir = entryFile.destDir ? S.join(__dirname, entryFile.destDir) : __dirname
+    conf.destDir = entryFile.destDir ? entryFile.destDir : null
 
     if (entryFile.destFile) {
-      conf.destFile = dir_switch(
-        destDir,
-        __dirname,
-        entryFile.destFile
-      )
+      conf.destFile = entryFile.destFile
     } else {
       let entryParts = entryFile.entry.split('/').pop().split('.')
-      conf.destFile = dir_switch(
-        destDir,
-        __dirname,
-        `${entryParts[0]}__shpak.${entryParts[1]}`
-      )
+      conf.destFile = `${entryParts[0]}__shpak.${entryParts[1]}`
     }
+
     return true;
   }
   function parseModules () {
-    const file = ModuleFactory.hatching(conf.entry)
-    try {
-      Save.file(__dirname, file)
-    } catch (err) {
-      P("Can't save file")
-    }
+    return ModuleFactory.hatching(conf.entry)
   }
-  function saveModule () {
-
-  }
-  function dir_switch(var1, var2, value) {
-    let dest
-    if (var1) {
-      dest = S.join(var1, value)
-    } else {
-      dest = S.join(var2, value)
-    }
-    return dest
+  function saveModule (file) {
+    Save.file(__dirname, conf.destDir, conf.destFile, file)
+    P('File saved').green()
   }
   return {
     doIt: process
