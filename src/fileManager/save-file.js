@@ -19,10 +19,10 @@ function SaveFile () {
 
   function check_dir_tree(root, destDir) {
     let dest = destDir.split('/')
-    for(let i = 0; i < dest.length; i++) {
-      root = root + '/' + dest[i]
+    dest.forEach(dir => {
+      root = root + '/' + dir
       create_dir(root)
-    }
+    })
     return root
   }
 
