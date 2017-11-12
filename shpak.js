@@ -1,4 +1,5 @@
 const pipe = require('b-pipe')
+
 const {ModuleFactory} = require('./src/moduleManager')
 const {Save} = require('./src/fileManager')
 
@@ -7,7 +8,6 @@ const {S, P} = require('./src/constManager')
 function Shpak () {
   const conf = {
     entry: '',
-    destDir: '',
     destFile: ''
   }
   function process () {
@@ -15,29 +15,33 @@ function Shpak () {
     return s_pipe()
   }
   function loadEntryPoint () {
-    let entryFile
+    let entryFile,
+      destDir
+
     try {
       entryFile = require(S.join(__dirname,S.entry()))
     } catch (e) {
-      throw 'There is no entry file <shpak.config.js>'
+      throw 'There is no config file <shpak.config.js>'
     }
 
-    conf.entry = S.join(__dirname, entryFile.entry)
+    if (entryFile.entry) {
+      conf.entry = S.join(__dirname, entryFile.entry)
+    } else {
+      throw 'There is no entry file in config'
+    }
 
-    conf.destDir = entryFile.destDir ? S.join(__dirname, entryFile.destDir) : __dirname
+    destDir = entryFile.destDir ? S.join(__dirname, entryFile.destDir) : __dirname
 
     if (entryFile.destFile) {
       conf.destFile = dir_switch(
-        conf.destDir,
+        destDir,
         __dirname,
         entryFile.destFile
       )
     } else {
-      let entryParts = entryFile.entry.split('/')
-      entryParts = entryParts[entryParts.length - 1].split('.')
-
+      let entryParts = entryFile.entry.split('/').pop().split('.')
       conf.destFile = dir_switch(
-        conf.destDir,
+        destDir,
         __dirname,
         `${entryParts[0]}__shpak.${entryParts[1]}`
       )
