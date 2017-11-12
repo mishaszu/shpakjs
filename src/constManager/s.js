@@ -25,7 +25,7 @@ class S {
   }
 
   static entry() {
-    return 'shpakjs.config.js'
+    return 'shpak.config.js'
   }
 
   static layEgg() {
