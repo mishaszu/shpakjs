@@ -1,38 +1,58 @@
-const root = __dirname
-const MainModule = require('./bundling/main-module.js')
-const ModuleFactory = require('./bundling/module-factory.js')
+const pipe = require('b-pipe')
 
-MainModule.test()
-console.log("-----------------")
+const {ModuleFactory} = require('./src/moduleManager')
+const {Save} = require('./src/fileManager')
+
+const {S, P} = require('./src/constManager')
 
 function Shpak () {
-  let ENRTYPOINT
-
+  const conf = {
+    entry: '',
+    destDir: '',
+    destFile: ''
+  }
+  function process () {
+    const s_pipe = pipe(loadEntryPoint, parseModules, saveModule)
+    return s_pipe()
+  }
   function loadEntryPoint () {
-    const entryFile = root + "/shpakjs.config.js"
+    let entryFile,
+      destDir
+
     try {
-      ENTRYPOINT = require(entryFile)
-    } catch (err) {
-      throw(err)
+      entryFile = require(S.join(__dirname,S.entry()))
+    } catch (e) {
+      throw 'There is no config file <shpak.config.js>'
     }
-    return  ENTRYPOINT.entry
-  }
 
-  function parseEntryPoint (pStringFile) {
-    const modules = ModuleFactory.parse(pStringFile, root)
-    console.log("-----------------")
-    console.log(modules)
-  }
+    if (entryFile.entry) {
+      conf.entry = S.join(__dirname, entryFile.entry)
+    } else {
+      throw 'There is no entry file in config'
+    }
 
+    conf.destDir = entryFile.destDir ? entryFile.destDir : null
+
+    if (entryFile.destFile) {
+      conf.destFile = entryFile.destFile
+    } else {
+      let entryParts = entryFile.entry.split('/').pop().split('.')
+      conf.destFile = `${entryParts[0]}__shpak.${entryParts[1]}`
+    }
+
+    return true;
+  }
+  function parseModules () {
+    return ModuleFactory.hatching(conf.entry)
+  }
+  function saveModule (file) {
+    Save.file(__dirname, conf.destDir, conf.destFile, file)
+    P('File saved').green()
+  }
   return {
-    loadEntryPoint: loadEntryPoint,
-    parseEntryPoint: parseEntryPoint
+    doIt: process
   }
 }
 
 var $ = Shpak()
-
-var filePath = $.loadEntryPoint()
-var modules = $.parseEntryPoint(filePath, root)
-
-//module.exports = Shpak()
+$.doIt()

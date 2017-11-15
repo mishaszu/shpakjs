@@ -1,2 +1,6 @@
 node_modules
 *.swp
+*.orig
+dest
+shpak.config.js
+test__write_file_1.js

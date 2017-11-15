@@ -1,0 +1,10 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "rules": {
+        "quotes": ["error", "single"],    
+        "no-extra-semi": "error",
+        "indent": ["error", 2],
+    }
+}

@@ -1,8 +1,8 @@
-const Module1sub = require('./sub_module1.js')
+const SubModule1 = require('./sub_module1.js')
 
 function Module1 () {
   function run2 () {
-    return ' | Run from Module 1 | ' + Module1sub.run()
+    return ' | Run from Module 1 | ' + SubModule1.run()
   }
   return {
     run: run2
